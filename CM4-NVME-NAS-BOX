@@ -45,11 +45,13 @@ CONFIG_PACKAGE_kmod-nvme=y
 CONFIG_PACKAGE_fdisk=y
 CONFIG_PACKAGE_losetup=y
 CONFIG_PACKAGE_resize2fs=y
+CONFIG_PACKAGE_mount-utils=y
 
 grep r8169 .config
 grep nvme .config
 grep fdisk .config
 grep losetup .config
 grep resize2fs .config
+grep mount-utils .config
 
 ####
