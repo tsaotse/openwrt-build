@@ -1,0 +1,55 @@
+CM4-NVME-NAS-BOX
+
+https://www.waveshare.net/wiki/CM4-NVME-NAS-BOX
+
+#####
+检查设备：lspci
+
+pi@CM4-NVME-NAS-BASE:~ $ lspci
+00:00.0 PCI bridge: Broadcom Limited Device 2711 (rev 20)
+01:00.0 PCI bridge: ASMedia Technology Inc. ASM1184e PCIe Switch Port
+02:01.0 PCI bridge: ASMedia Technology Inc. ASM1184e PCIe Switch Port
+02:03.0 PCI bridge: ASMedia Technology Inc. ASM1184e PCIe Switch Port
+02:05.0 PCI bridge: ASMedia Technology Inc. ASM1184e PCIe Switch Port
+02:07.0 PCI bridge: ASMedia Technology Inc. ASM1184e PCIe Switch Port
+03:00.0 USB controller: VIA Technologies, Inc. VL805 USB 3.0 Host Controller (rev 01)
+04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)
+
+ASM1184
+
+#####
+扩展千兆网口
+板载两个千兆网卡其中ETH0为原生网卡，ETH1是扩展网卡（RTL8111H）。
+
+Device Drivers
+ > Network device support
+   > Ethernet driver support
+     > Realtek devices
+       > Realtek 8169/8168/8101/8125 ethernet support
+
+#####
+RTC
+RTC (PCF85063a) 在i2c-1 上，地址是 0x51（7位地址）
+
+ 在 /boot/config.txt 添加才能生效。
+
+dtparam=i2c_arm=on
+dtoverlay=i2c-rtc,pcf85063a
+
+####
+openwrt
+
+CONFIG_PACKAGE_r8169-firmware=y
+CONFIG_PACKAGE_kmod-r8169=y
+CONFIG_PACKAGE_kmod-nvme=y
+CONFIG_PACKAGE_fdisk=y
+CONFIG_PACKAGE_losetup=y
+CONFIG_PACKAGE_resize2fs=y
+
+grep r8169 .config
+grep nvme .config
+grep fdisk .config
+grep losetup .config
+grep resize2fs .config
+
+####
