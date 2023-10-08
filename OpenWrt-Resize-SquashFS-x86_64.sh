@@ -9,7 +9,7 @@
 
 clear
 
-# Select the OWRT version to build
+# Select the OpenWrt version to build
 #BUILDER="https://downloads.openwrt.org/releases/22.03.5/targets/x86/64/openwrt-imagebuilder-22.03.5-x86-64.Linux-x86_64.tar.xz"
 #BUILDER="https://downloads.openwrt.org/snapshots/targets/x86/64/openwrt-imagebuilder-x86-64.Linux-x86_64.tar.xz" # Current snapshot
 BUILDER="https://chinanet.mirrors.ustc.edu.cn/openwrt/releases/22.03.5/targets/x86/64/openwrt-imagebuilder-22.03.5-x86-64.Linux-x86_64.tar.xz"
@@ -33,10 +33,10 @@ IMAGE_TAG="BigSquash"
 # Setup the image builder working environment 
 SOURCE_FILE="${BUILDER##*/}" # Separate the tar.xz file name from the link
 SOURCE_DIR="${SOURCE_FILE%%.tar.xz}" # Get the uncompressed tar.xz directory name
-BUILD_ROOT="$(pwd)/owrt_builds"
+BUILD_ROOT="$(pwd)/OpenWrt_builds"
 OUTPUT="${BUILD_ROOT}/images"
 VMDK="${BUILD_ROOT}/vmdk"
-INJECT_FILES="$(pwd)/owrt_inject_files"
+INJECT_FILES="$(pwd)/OpenWrt_inject_files"
 BUILD_LOG="${BUILD_ROOT}/build.log"
 
 # Clear out any previous builds
@@ -60,7 +60,7 @@ echo
 read -p $"Copy image config files to ${INJECT_FILES} now. Enter to continue..."
 echo -e ${NC}
 
-# Install OWRT build system dependencies for recent Ubuntu/Debian.
+# Install OpenWrt build system dependencies for recent Ubuntu/Debian.
 # See here for other distro dependencies: https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem
 # sudo apt-get update  2>&1 | tee -a ${BUILD_LOG}
 # sudo apt-get install -y build-essential clang flex bison g++ gawk gcc-multilib g++-multilib \
